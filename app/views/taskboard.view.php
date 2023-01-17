@@ -27,16 +27,53 @@
             <button class="btn btn-primary">Add Task</button>
             <button class="btn btn-primary">Add Multiple</button>
         </div>
-        <div class="d-flex justify-content-center align-items-center">
-            <div class="taskboard">
+        <div class="d-flex justify-content-center taskboard-form">
+            <div class="taskboard d-flex flex-row flex-wrap justify-content-around ">
                 <div class="todo">
-                    <div></div>
+                    <div class="status">
+                        <h3 class="display-6">To Do | 3</h3>
+                        <div class="linetodo mb-4"></div>
+                        <div class="task">
+                            <h5>task name</h5>
+                            <p>task subject</p>
+                            <div>
+                                <button class="btn btn-primary">delet</button>
+                                <button class="btn btn-primary">edite</button>
+                                <button class="btn btn-primary">move right</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="doing">
-
+                    <div class="status">
+                        <h3 class="display-6">Doing | 3</h3>
+                        <div class="linedoing mb-4"></div>
+                        <div class="task">
+                            <h5>task name</h5>
+                            <p>task subject</p>
+                            <div>
+                                <button class="btn btn-primary">move left</button>
+                                <button class="btn btn-primary">delet</button>
+                                <button class="btn btn-primary">edite</button>
+                                <button class="btn btn-primary">move right</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="done">
-
+                    <div class="status">
+                        <h3 class="display-6">Done | 3</h3>
+                        <div class="linedone mb-4 "></div>
+                        <div class="task">
+                            <h5>task name</h5>
+                            <p>task subject</p>
+                            <div>
+                                <button class="btn btn-primary">move left</button>
+                                <button class="btn btn-primary">delet</button>
+                                <button class="btn btn-primary">edite</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
