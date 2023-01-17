@@ -1,14 +1,16 @@
 
 <?php
 
-require_once "app/models/.class.php";
+require_once "app/models/Db.class.php";
+require_once "app/models/Tâche.class.php";
+require_once "app/models/User.class.php";
 
 
 class homecontroller
 {
     private $app;
 
-    
+
     // public function checklogin()
     // {
     //     $connect = new Db;
