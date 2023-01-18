@@ -23,6 +23,9 @@ if (empty($_GET['page'])) {
         case "taskboard":
             require "app/views/taskboard.view.php";
             break;
+        case "addtask":
+            $homecontroller->addtask();
+            break;
         default:
             require "app/views/404.view.php";
             break;

@@ -42,24 +42,6 @@
                                 <i class="fa-solid fa-right-long i"></i>
                             </div>
                         </div>
-                        <div class="task">
-                            <h5>task name</h5>
-                            <p>task subjectpppppppppppppppppppppppppppppppppppppppppppppppp</p>
-                            <div>
-                                <i class="fa-solid fa-trash-can i"></i>
-                                <i class="fa-regular fa-pen-to-square i"></i>
-                                <i class="fa-solid fa-right-long i"></i>
-                            </div>
-                        </div>
-                        <div class="task">
-                            <h5>task name</h5>
-                            <p>task subjectpppppppppppppppppppppppppppppppppppppppppppppppp</p>
-                            <div>
-                                <i class="fa-solid fa-trash-can i"></i>
-                                <i class="fa-regular fa-pen-to-square i"></i>
-                                <i class="fa-solid fa-right-long i"></i>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="doing">
@@ -99,10 +81,18 @@
     <div>
         <div class="addtask">
             <i class="fa-solid fa-xmark add-close mt-3"></i>
-            <form>
-                <input class="input form-control mt-3 mb-3" type="text" placeholder="Enter your name" required>
-                <input class="input form-control mb-3" type="email" placeholder="Enter your email" required>
-                <input class="input form-control mb-3" type="email" placeholder="Enter your email" required>
+            <form action="addtask" method="post">
+                <input class="input form-control mt-3 mb-3" type="text" name="task-title" placeholder="Enter Task Title" required>
+                <input class="input form-control mb-3" type="text" name="task-subject" placeholder="Enter Task subject" required>
+                <select class="form-control mb-2" name="task-status" id="">
+                    <option value="todo">To Do</option>
+                    <option value="doing">Doing</option>
+                    <option value="done">Done</option>
+                </select>
+                <label for="">Deadline :</label>
+                <div class="mb-3 mt-2">
+                    <input type="datetime-local" class="deadline" name="deadline" min="<?php echo date('Y-m-d\H:i'); ?>" required>
+                </div>
                 <button class="btn btn-primary mb-3">Submit</button>
             </form>
         </div>
@@ -111,10 +101,12 @@
             <form>
                 <div class="num-of-task">
                     <label for="numoftask">Number Of Task :</label>
-                    <input type="number" class="numoftask" name="numoftask" min="1" max="10" style="color: black;">
+                    <input type="number" class="numoftask" name="numoftask" min="2" max="10" style="color: black;">
                 </div>
                 <div class="task-form d-flex flex-row justify-content-around flex-wrap">
+
                 </div>
+                <button class="btn btn-primary mb-3">Submit</button>
             </form>
         </div>
 

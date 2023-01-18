@@ -2,14 +2,31 @@
 <?php
 
 require_once "app/models/Db.class.php";
-require_once "app/models/Tâche.class.php";
+require_once "app/models/Task.class.php";
 require_once "app/models/User.class.php";
 
 
 class homecontroller
 {
-    private $app;
+    private $user;
 
+    public function addtask()
+    {
+        $userid = 1;
+        $title = $_POST['task-title'];
+        $subject = $_POST['task-subject'];
+        $status = $_POST['task-status'];
+        $deadline = $_POST['deadline'];
+
+        $this->user = new task;
+        $query = $this->user->addtask($userid, $status, $title, $subject, $deadline);
+
+        if ($query == true) {
+            header("locatin: taskboard");
+        } else {
+            echo "error";
+        }
+    }
 
     // public function checklogin()
     // {
