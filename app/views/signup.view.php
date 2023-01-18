@@ -29,7 +29,7 @@
                         <label for="password" class="lead">Password</label>
                         <input type="password" class="form-control" id="password" placeholder="Enter your password">
                     </div>
-                    <button type="submit" class="btn btn-dark mt-3">Sign Up</button>
+                    <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
                 </form>
                 <div class="info_div mt-4">
                     <p>Already have account ?<a href="login">Login now</a></p>

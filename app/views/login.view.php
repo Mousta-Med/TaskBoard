@@ -25,7 +25,7 @@
                         <label for="password" class="lead">Password</label>
                         <input type="password" class="form-control" id="password" placeholder="Password">
                     </div>
-                    <button type="submit" class="btn btn-dark mt-3">Submit</button>
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
                     <div class="info_div mt-4">
                         <p>You dont have account ?<a href="signup">Register now</a></p>
                     </div>

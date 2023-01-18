@@ -4,6 +4,14 @@
   color: aliceblue;
   text-align: center;
 }
+
+.task p {
+  word-break: break-all;
+  width: 400px;
+  text-align: left;
+  padding: 0.5rem 1rem;
+}
+
 p,
 h5 {
   font-weight: 500;
@@ -23,8 +31,7 @@ body {
   justify-content: center;
   height: 100vh;
   width: 100%;
-  background: url(https://images.unsplash.com/photo-1634078111133-a1e12d6131b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1230&q=80)
-    no-repeat center;
+  background: url(https://images.unsplash.com/photo-1634078111133-a1e12d6131b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1230&q=80) no-repeat center;
   background-size: cover;
 }
 
@@ -34,8 +41,7 @@ body {
   justify-content: center;
   height: 100vh;
   width: 100%;
-  background: url(https://images.unsplash.com/photo-1634078111133-a1e12d6131b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1230&q=80)
-    no-repeat center;
+  background: url(https://images.unsplash.com/photo-1634078111133-a1e12d6131b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1230&q=80) no-repeat center;
   background-size: cover;
 }
 
@@ -51,28 +57,34 @@ nav {
   font-size: 20px;
   padding: 20px;
 }
+
 .task {
   background-color: #00a6fb;
   border-radius: 15px;
+  margin-bottom: 10px;
 }
+
 .taskboard-form {
   width: 100%;
 }
+
 .a:hover,
-i:hover {
+.i:hover {
   color: darkgray;
+  cursor: pointer;
 }
 
-.iconscolor {
+.i {
   color: white;
   font-size: 20px;
 }
 
 .taskboard {
   padding: 20px;
-  width: 75%;
+  width: 90%;
   background-color: #0582ca;
   border-radius: 15px;
+  margin-bottom: 50px;
 }
 
 .linetodo {
@@ -80,16 +92,102 @@ i:hover {
   height: 5px;
   border-radius: 10px;
 }
+
 .linedoing {
   background-color: orange;
   height: 5px;
   border-radius: 10px;
 }
+
 .linedone {
-  background-color: green;
+  background-color: rgb(16, 180, 16);
   height: 5px;
   border-radius: 10px;
 }
+
+.addtask {
+  position: fixed;
+  display: none;
+  top: 55%;
+  background: linear-gradient(#000, #116189);
+  border-radius: 15px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.addtask-multi {
+  position: fixed;
+  display: none;
+  top: 20%;
+  background: linear-gradient(#000, #116189);
+  border-radius: 15px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .task-form{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: ;
+} */
+
+
+
+.active {
+  display: flex;
+}
+
+.add-close,
+.add-multi-close {
+  border: none;
+  cursor: pointer;
+  background: none;
+  color: aliceblue;
+  font-size: 35px;
+}
+
+.add-close:hover,
+.add-multi-close:hover {
+  background-color: aliceblue;
+  color: #000;
+  transition: ease-in 0.2s;
+  border-radius: 5px;
+}
+
+.todo {
+  border: 5px solid red;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.doing {
+  border: 5px solid orange;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.done {
+  border: 5px solid rgb(16, 180, 16);
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.d1 {
+  background-color: red;
+  height: 8px;
+  width: 5px;
+}
+
+.numoftask {
+  color: #000;
+}
+
 
 @media only screen and (max-width: 600px) {
   nav {
@@ -98,5 +196,9 @@ i:hover {
 
   .search {
     width: 48% !important;
+  }
+
+  p {
+    width: 360px;
   }
 }
