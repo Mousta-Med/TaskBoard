@@ -27,9 +27,13 @@ numinput.addEventListener("change", function () {
     let i = 1;
     while (i <= value) {
       taskform.innerHTML += `   <div class="multitask">
-                    <input class="input form-control mt-3 mb-3" type="text" placeholder="Enter your name" required>
-                    <input class="input form-control mb-3" type="email" placeholder="Enter your email" required>
-                    <input class="input form-control mb-3" type="email" placeholder="Enter your email" required>
+      <input class="input form-control mt-3 mb-3" type="text" name="task-title${i}" placeholder="Enter Task Title" required>
+      <input class="input form-control mb-3" type="text" name="task-subject${i}" placeholder="Enter Task subject" required>
+      <input type="text" value="todo" name="task-status" class="d-none">
+      <label for="">Deadline :</label>
+      <div class="mb-3 mt-2">
+          <input type="datetime-local" class="deadline" name="deadline${i}" required>
+      </div>
                      </div>`;
       i++;
     }

@@ -33,46 +33,61 @@
                     <div class="status">
                         <h3 class="display-6">To Do <span style="color: red;">|</span> 3</h3>
                         <div class="linetodo mb-4"></div>
-                        <div class="task">
-                            <h5>task name</h5>
-                            <p>task subjectpppppppppppppppppppppppppppppppppppppppppppppppp</p>
-                            <div>
-                                <i class="fa-solid fa-trash-can i"></i>
-                                <i class="fa-regular fa-pen-to-square i"></i>
-                                <i class="fa-solid fa-right-long i"></i>
+                        <?php
+                        while ($task = mysqli_fetch_assoc($sql1)) {
+                        ?>
+                            <div class="task">
+                                <h5><?= $task['task_title'] ?> : </h5>
+                                <p><?= $task['task_subject'] ?></p>
+                                <p class="deadtext">Deadline : <?= $task['task_deadline'] ?></p>
+                                <div>
+                                    <a href="delete/<?= $task['task_id'] ?>"><i class="fa-solid fa-trash-can i"></i></a>
+                                    <a href="update/<?= $task['task_id'] ?>"><i class="fa-regular fa-pen-to-square i"></i></a>
+                                    <a href=""><i class="fa-solid fa-right-long i"></i></a>
+                                </div>
                             </div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="doing">
                     <div class="status">
                         <h3 class="display-6">Doing <span style="color: orange;">|</span> 3</h3>
                         <div class="linedoing mb-4"></div>
-                        <div class="task">
-                            <h5>task name</h5>
-                            <p>task subject</p>
-                            <div>
-                                <i class="fa-solid fa-left-long i"></i>
-                                <i class="fa-solid fa-trash-can i"></i>
-                                <i class="fa-regular fa-pen-to-square i"></i>
-                                <i class="fa-solid fa-right-long i"></i>
+                        <?php
+                        while ($task = mysqli_fetch_assoc($sql2)) {
+                        ?>
+                            <div class="task">
+                                <h5><?= $task['task_title'] ?></h5>
+                                <p><?= $task['task_subject'] ?></p>
+                                <p class="deadtext">Deadline : <?= $task['task_deadline'] ?></p>
+                                <div>
+                                    <a href=""><i class="fa-solid fa-left-long i"></i></a>
+                                    <a href="delete/<?= $task['task_id'] ?>"><i class="fa-solid fa-trash-can i"></i></a>
+                                    <a href="update/<?= $task['task_id'] ?>"><i class="fa-regular fa-pen-to-square i"></i></a>
+                                    <a href=""><i class="fa-solid fa-right-long i"></i></a>
+                                </div>
                             </div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="done">
                     <div class="status">
                         <h3 class="display-6">Done <span style="color: rgb(16, 180, 16);">|</span> 3</h3>
                         <div class="linedone mb-4 "></div>
-                        <div class="task">
-                            <h5>task name</h5>
-                            <p>task subject</p>
-                            <div>
-                                <i class="fa-solid fa-left-long i"></i>
-                                <i class="fa-solid fa-trash-can i"></i>
-                                <i class="fa-regular fa-pen-to-square i"></i>
+                        <?php
+                        while ($task = mysqli_fetch_assoc($sql3)) {
+                        ?>
+                            <div class="task">
+                                <h5><?= $task['task_title'] ?></h5>
+                                <p><?= $task['task_subject'] ?></p>
+                                <p class="deadtext">Deadline : <?= $task['task_deadline'] ?></p>
+                                <div class="">
+                                    <a href=""><i class="fa-solid fa-left-long i"></i></a>
+                                    <a href="delete/<?= $task['task_id'] ?>"><i class="fa-solid fa-trash-can i"></i></a>
+                                    <a href="update/<?= $task['task_id'] ?>"><i class="fa-regular fa-pen-to-square i"></i></a>
+                                </div>
                             </div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -84,24 +99,20 @@
             <form action="addtask" method="post">
                 <input class="input form-control mt-3 mb-3" type="text" name="task-title" placeholder="Enter Task Title" required>
                 <input class="input form-control mb-3" type="text" name="task-subject" placeholder="Enter Task subject" required>
-                <select class="form-control mb-2" name="task-status" id="">
-                    <option value="todo">To Do</option>
-                    <option value="doing">Doing</option>
-                    <option value="done">Done</option>
-                </select>
+                <input type="text" value="todo" name="task-status" class="d-none">
                 <label for="">Deadline :</label>
                 <div class="mb-3 mt-2">
-                    <input type="datetime-local" class="deadline" name="deadline" min="<?php echo date('Y-m-d\H:i'); ?>" required>
+                    <input type="datetime-local" class="deadline" name="deadline" min="<?php echo date('Y-m-d\TH:i'); ?>" required>
                 </div>
                 <button class="btn btn-primary mb-3">Submit</button>
             </form>
         </div>
         <div class="addtask-multi">
             <i class="fa-solid fa-xmark add-multi-close mt-3"></i>
-            <form>
-                <div class="num-of-task">
+            <form action="addmultitask" method="post">
+                <div class="num-of-task mb-3 mt-3">
                     <label for="numoftask">Number Of Task :</label>
-                    <input type="number" class="numoftask" name="numoftask" min="2" max="10" style="color: black;">
+                    <input type="number" class="numoftask" name="numoftask" min="2" max="8" style="color: black;">
                 </div>
                 <div class="task-form d-flex flex-row justify-content-around flex-wrap">
 

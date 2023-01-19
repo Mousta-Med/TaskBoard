@@ -9,7 +9,7 @@
   word-break: break-all;
   width: 400px;
   text-align: left;
-  padding: 0.5rem 1rem;
+  padding: 0rem 1rem;
 }
 
 p,
@@ -31,8 +31,7 @@ body {
   justify-content: center;
   height: 100vh;
   width: 100%;
-  background: url(https://images.unsplash.com/photo-1634078111133-a1e12d6131b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1230&q=80)
-    no-repeat center;
+  background: url(https://images.unsplash.com/photo-1634078111133-a1e12d6131b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1230&q=80) no-repeat center;
   background-size: cover;
 }
 
@@ -42,8 +41,7 @@ body {
   justify-content: center;
   height: 100vh;
   width: 100%;
-  background: url(https://images.unsplash.com/photo-1634078111133-a1e12d6131b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1230&q=80)
-    no-repeat center;
+  background: url(https://images.unsplash.com/photo-1634078111133-a1e12d6131b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1230&q=80) no-repeat center;
   background-size: cover;
 }
 
@@ -70,6 +68,10 @@ nav {
   width: 100%;
 }
 
+.a {
+  font-size: 25px;
+}
+
 .a:hover,
 .i:hover {
   color: darkgray;
@@ -78,7 +80,7 @@ nav {
 
 .i {
   color: white;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .taskboard {
@@ -120,6 +122,13 @@ nav {
   align-items: center;
 }
 
+.updatecontainer {
+  padding-top: 10%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .addtask-multi {
   position: fixed;
   display: none;
@@ -132,6 +141,7 @@ nav {
   flex-direction: column;
   align-items: center;
 }
+
 .multitask {
   width: 150px;
 }
@@ -139,20 +149,36 @@ nav {
 .active {
   display: flex;
 }
+
 select:hover {
   cursor: pointer;
   color: aliceblue;
   background-color: #051923;
 }
+
 input[type="datetime-local"] {
   color: #000;
 }
+
 option {
   color: #000;
 }
+
 .deadline {
   height: 35px;
   border-radius: 5px;
+}
+
+.deadtext {
+  color: #003554 !important;
+}
+
+.task h5 {
+  color: #051923;
+}
+
+input[type="datetime-local"] {
+  width: 150px;
 }
 
 .add-close,
@@ -190,6 +216,12 @@ option {
   margin-bottom: 20px;
 }
 
+.todo,
+.doing,
+.done {
+  width: 400px;
+}
+
 .d1 {
   background-color: red;
   height: 8px;
@@ -209,7 +241,17 @@ option {
     width: 48% !important;
   }
 
-  p {
+  .task p {
     width: 360px;
+  }
+
+  .updatecontainer {
+    padding-top: 40%;
+  }
+
+  .todo,
+  .doing,
+  .done {
+    width: 350px;
   }
 }

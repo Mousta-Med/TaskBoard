@@ -22,7 +22,69 @@ class homecontroller
         $query = $this->user->addtask($userid, $status, $title, $subject, $deadline);
 
         if ($query == true) {
-            header("locatin: taskboard");
+            header('Location: ../taskboard');
+        } else {
+            echo "error";
+        }
+    }
+    public function updatetask($id)
+    {
+        $title = $_POST['task-title'];
+        $subject = $_POST['task-subject'];
+        $deadline = $_POST['deadline'];
+
+        $this->user = new task;
+        $query = $this->user->updatetask($title, $subject, $deadline, $id);
+
+        if ($query == true) {
+            header('Location: ../taskboard');
+        } else {
+            echo "error";
+        }
+    }
+    public function showtasks()
+    {
+        $this->user = new task;
+        $sql1 = $this->user->showtasktodo();
+        $sql2 = $this->user->showtaskdoing();
+        $sql3 = $this->user->showtaskdone();
+
+        require "app/views/taskboard.view.php";
+    }
+    public function showtaskid($id)
+    {
+        $this->user = new task;
+        $sql = $this->user->showtaskid($id);
+
+        require "app/views/update.view.php";
+    }
+    public function delete($id)
+    {
+        $this->user = new task;
+        $query = $this->user->delete($id);
+        if ($query == true) {
+            header('Location: ../taskboard');
+        } else {
+            echo "error";
+        }
+    }
+
+    public function addmultitask()
+    {
+        $userid = 1;
+        $nptask = $_POST['numoftask'];
+        $status = $_POST['task-status'];
+        for ($i = 1; $i - 1 < $nptask; $i++) {
+            ${'title' . $i} = $_POST['task-title' . $i];
+            ${'subject' . $i} = $_POST['task-subject' . $i];
+            ${'deadline' . $i} = $_POST['deadline' . $i];
+        }
+        $this->user = new task;
+        for ($i = 1; $i - 1 < $nptask; $i++) {
+            $query = $this->user->addtask($userid, $status, ${'title' . $i}, ${'subject' . $i}, ${'deadline' . $i});
+        }
+        if ($query == true) {
+            header('Location: ../taskboard');
         } else {
             echo "error";
         }

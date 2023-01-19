@@ -8,7 +8,7 @@ $homecontroller = new homecontroller;
 // error_reporting(-1);
 
 if (empty($_GET['page'])) {
-    require "app/views/taskboard.view.php";
+    $homecontroller->showtasks();
 } else {
     $page = rtrim($_GET['page'], '/');
     $URL = explode('/', filter_var($page), FILTER_SANITIZE_URL);
@@ -21,10 +21,37 @@ if (empty($_GET['page'])) {
             require "app/views/login.view.php";
             break;
         case "taskboard":
-            require "app/views/taskboard.view.php";
+            $homecontroller->showtasks();
             break;
         case "addtask":
             $homecontroller->addtask();
+            break;
+        case "addmultitask":
+            $homecontroller->addmultitask();
+            break;
+        case "update":
+            $id = $URL[1];
+            if (filter_var($id, FILTER_VALIDATE_INT) === false) {
+                require "app/views/404.view.php";
+            } else {
+                $homecontroller->showtaskid($id);
+            }
+            break;
+        case "updatetask":
+            $id = $URL[1];
+            if (filter_var($id, FILTER_VALIDATE_INT) === false) {
+                require "app/views/404.view.php";
+            } else {
+                $homecontroller->updatetask($id);
+            }
+            break;
+        case "delete":
+            $id = $URL[1];
+            if (filter_var($id, FILTER_VALIDATE_INT) === false) {
+                require "app/views/404.view.php";
+            } else {
+                $homecontroller->delete($id);
+            }
             break;
         default:
             require "app/views/404.view.php";
