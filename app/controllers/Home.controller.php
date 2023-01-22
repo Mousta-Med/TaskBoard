@@ -48,6 +48,10 @@ class homecontroller
         $sql1 = $this->user->showtasktodo();
         $sql2 = $this->user->showtaskdoing();
         $sql3 = $this->user->showtaskdone();
+        $sql4 = $this->user->showarchive();
+        $statistique1 = $this->user->statistique("todo");
+        $statistique2 = $this->user->statistique("doing");
+        $statistique3 = $this->user->statistique("done");
 
         require "app/views/taskboard.view.php";
     }
@@ -58,6 +62,7 @@ class homecontroller
 
         require "app/views/update.view.php";
     }
+
     public function delete($id)
     {
         $this->user = new task;
@@ -85,6 +90,64 @@ class homecontroller
         }
         if ($query == true) {
             header('Location: ../taskboard');
+        } else {
+            echo "error";
+        }
+    }
+    public function moveright($status, $id)
+    {
+        $this->user = new task;
+        if ($status == "doing") {
+            $move = "done";
+            $query =  $this->user->move($move, $id);
+        } elseif ($status == "todo") {
+            $move = "doing";
+            $query =  $this->user->move($move, $id);
+        }
+
+        if ($query == true) {
+            header('Location: ../../taskboard');
+        } else {
+            echo "error";
+        }
+    }
+    public function moveleft($status, $id)
+    {
+        $this->user = new task;
+        if ($status == "doing") {
+            $move = "todo";
+            $query =  $this->user->move($move, $id);
+        } elseif ($status == "done") {
+            $move = "doing";
+            $query =  $this->user->move($move, $id);
+        }
+
+        if ($query == true) {
+            header('Location: ../../taskboard');
+        } else {
+            echo "error";
+        }
+    }
+    public function archive($status, $id)
+    {
+        $this->user = new task;
+        $query =  $this->user->archive($status, $id);
+
+
+        if ($query == true) {
+            header('Location: ../../taskboard');
+        } else {
+            echo "error";
+        }
+    }
+    public function unarchive($status, $id)
+    {
+        $this->user = new task;
+        $query =  $this->user->unarchive($status, $id);
+
+
+        if ($query == true) {
+            header('Location: ../../taskboard');
         } else {
             echo "error";
         }

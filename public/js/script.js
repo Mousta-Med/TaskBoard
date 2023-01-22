@@ -4,6 +4,9 @@ let closeadd = document.querySelector(".add-close");
 let openaddmulti = document.querySelector(".add-multi-open");
 let addtaskmulti = document.querySelector(".addtask-multi");
 let closeaddmulti = document.querySelector(".add-multi-close");
+let openarchive = document.querySelector(".archive-open");
+let addarchive = document.querySelector(".archive");
+let closearchive = document.querySelector(".archive-close");
 let taskform = document.querySelector(".task-form");
 let numinput = document.querySelector(".numoftask");
 
@@ -18,6 +21,12 @@ openaddmulti.addEventListener("click", () => {
 });
 closeaddmulti.onclick = () => {
   addtaskmulti.classList.remove("active");
+};
+openarchive.addEventListener("click", () => {
+  addarchive.classList.toggle("active");
+});
+closearchive.onclick = () => {
+  addarchive.classList.remove("active");
 };
 
 numinput.addEventListener("change", function () {

@@ -29,6 +29,26 @@ if (empty($_GET['page'])) {
         case "addmultitask":
             $homecontroller->addmultitask();
             break;
+        case "moveright":
+            $status = $URL[1];
+            $id = $URL[2];
+            $homecontroller->moveright($status, $id);
+            break;
+        case "moveleft":
+            $status = $URL[1];
+            $id = $URL[2];
+            $homecontroller->moveleft($status, $id);
+            break;
+        case "archive":
+            $status = $URL[1];
+            $id = $URL[2];
+            $homecontroller->archive($status, $id);
+            break;
+        case "unarchive":
+            $status = $URL[1];
+            $id = $URL[2];
+            $homecontroller->unarchive($status, $id);
+            break;
         case "update":
             $id = $URL[1];
             if (filter_var($id, FILTER_VALIDATE_INT) === false) {

@@ -24,7 +24,7 @@
                 <input class="input form-control mb-3" type="text" name="task-subject" value="<?= $task['task_subject'] ?>" required>
                 <label for="">Deadline :</label>
                 <div class="mb-3 mt-2">
-                    <input type="datetime-local" class="deadline" name="deadline" value="<?= $task['task_deadline'] ?>" min="<?php echo date('Y-m-d\TH:i'); ?>" required>
+                    <input type="datetime-local" class="deadline" name="deadline" value="<?= $task['task_deadline'] ?>" min="<?= date('Y-m-d\TH:i') ?>" required>
                 </div>
                 <div>
                     <button type="submit" class="btn btn-primary mb-3">Submit</button>

@@ -79,4 +79,53 @@ class task extends Db
         $result = $query->get_result();
         return $result;
     }
+    public function move($move, $id)
+    {
+        $connect = new Db;
+        $conn = $connect->connection();
+        $query = $conn->prepare("UPDATE task SET task_status = ? WHERE task_id = ?");
+        $query->bind_param("si", $move, $id);
+        $result = $query->execute();
+        return $result;
+    }
+    public function archive($status, $id)
+    {
+        $archive = "archive";
+        $connect = new Db;
+        $conn = $connect->connection();
+        $query = $conn->prepare("UPDATE task SET st_bf_ar = ?, task_status = ? WHERE task_id = ?");
+        $query->bind_param("ssi", $status, $archive, $id);
+        $result = $query->execute();
+        return $result;
+    }
+    public function unarchive($status, $id)
+    {
+        $archive = "";
+        $connect = new Db;
+        $conn = $connect->connection();
+        $query = $conn->prepare("UPDATE task SET st_bf_ar = ?, task_status = ? WHERE task_id = ?");
+        $query->bind_param("ssi", $archive, $status, $id);
+        $result = $query->execute();
+        return $result;
+    }
+    public function showarchive()
+    {
+        $connect = new Db;
+        $conn = $connect->connection();
+        $sql4 = $conn->prepare("SELECT * FROM task WHERE task_status = 'archive' AND user_id = 1 ORDER BY task_deadline");
+        // $sql3->bind_param("i", $id);
+        $sql4->execute();
+        $result = $sql4->get_result();
+        return $result;
+    }
+    public function statistique($status)
+    {
+        $connect = new Db;
+        $conn = $connect->connection();
+        $query = $conn->prepare("SELECT COUNT(task_status) FROM task WHERE task_status = ?");
+        $query->bind_param("s", $status);
+        $query->execute();
+        $result = $query->get_result();
+        return $result;
+    }
 }
