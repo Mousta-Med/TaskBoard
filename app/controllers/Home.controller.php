@@ -1,25 +1,25 @@
 
 <?php
-
+session_start();
 require_once "app/models/Db.class.php";
 require_once "app/models/Task.class.php";
 require_once "app/models/User.class.php";
 
 
-class homecontroller
+class Homecontroller
 {
-    private $user;
+    private $app;
 
     public function addtask()
     {
-        $userid = 1;
+        $userid = $_SESSION['id'];
         $title = $_POST['task-title'];
         $subject = $_POST['task-subject'];
         $status = $_POST['task-status'];
         $deadline = $_POST['deadline'];
 
-        $this->user = new task;
-        $query = $this->user->addtask($userid, $status, $title, $subject, $deadline);
+        $this->app = new Task;
+        $query = $this->app->addtask($userid, $status, $title, $subject, $deadline);
 
         if ($query == true) {
             header('Location: ../taskboard');
@@ -33,8 +33,8 @@ class homecontroller
         $subject = $_POST['task-subject'];
         $deadline = $_POST['deadline'];
 
-        $this->user = new task;
-        $query = $this->user->updatetask($title, $subject, $deadline, $id);
+        $this->app = new Task;
+        $query = $this->app->updatetask($title, $subject, $deadline, $id);
 
         if ($query == true) {
             header('Location: ../taskboard');
@@ -44,29 +44,30 @@ class homecontroller
     }
     public function showtasks()
     {
-        $this->user = new task;
-        $sql1 = $this->user->showtasktodo();
-        $sql2 = $this->user->showtaskdoing();
-        $sql3 = $this->user->showtaskdone();
-        $sql4 = $this->user->showarchive();
-        $statistique1 = $this->user->statistique("todo");
-        $statistique2 = $this->user->statistique("doing");
-        $statistique3 = $this->user->statistique("done");
+        $userid = $_SESSION['id'];
+        $this->app = new Task;
+        $sql1 = $this->app->showtasktodo($userid);
+        $sql2 = $this->app->showtaskdoing($userid);
+        $sql3 = $this->app->showtaskdone($userid);
+        $sql4 = $this->app->showarchive($userid);
+        $statistique1 = $this->app->statistique("todo", $userid);
+        $statistique2 = $this->app->statistique("doing", $userid);
+        $statistique3 = $this->app->statistique("done", $userid);
 
         require "app/views/taskboard.view.php";
     }
     public function showtaskid($id)
     {
-        $this->user = new task;
-        $sql = $this->user->showtaskid($id);
+        $this->app = new Task;
+        $sql = $this->app->showtaskid($id);
 
         require "app/views/update.view.php";
     }
 
     public function delete($id)
     {
-        $this->user = new task;
-        $query = $this->user->delete($id);
+        $this->app = new Task;
+        $query = $this->app->delete($id);
         if ($query == true) {
             header('Location: ../taskboard');
         } else {
@@ -76,7 +77,7 @@ class homecontroller
 
     public function addmultitask()
     {
-        $userid = 1;
+        $userid = $_SESSION['id'];
         $nptask = $_POST['numoftask'];
         $status = $_POST['task-status'];
         for ($i = 1; $i - 1 < $nptask; $i++) {
@@ -84,9 +85,9 @@ class homecontroller
             ${'subject' . $i} = $_POST['task-subject' . $i];
             ${'deadline' . $i} = $_POST['deadline' . $i];
         }
-        $this->user = new task;
+        $this->app = new Task;
         for ($i = 1; $i - 1 < $nptask; $i++) {
-            $query = $this->user->addtask($userid, $status, ${'title' . $i}, ${'subject' . $i}, ${'deadline' . $i});
+            $query = $this->app->addtask($userid, $status, ${'title' . $i}, ${'subject' . $i}, ${'deadline' . $i});
         }
         if ($query == true) {
             header('Location: ../taskboard');
@@ -96,13 +97,13 @@ class homecontroller
     }
     public function moveright($status, $id)
     {
-        $this->user = new task;
+        $this->app = new Task;
         if ($status == "doing") {
             $move = "done";
-            $query =  $this->user->move($move, $id);
+            $query =  $this->app->move($move, $id);
         } elseif ($status == "todo") {
             $move = "doing";
-            $query =  $this->user->move($move, $id);
+            $query =  $this->app->move($move, $id);
         }
 
         if ($query == true) {
@@ -113,13 +114,13 @@ class homecontroller
     }
     public function moveleft($status, $id)
     {
-        $this->user = new task;
+        $this->app = new Task;
         if ($status == "doing") {
             $move = "todo";
-            $query =  $this->user->move($move, $id);
+            $query =  $this->app->move($move, $id);
         } elseif ($status == "done") {
             $move = "doing";
-            $query =  $this->user->move($move, $id);
+            $query =  $this->app->move($move, $id);
         }
 
         if ($query == true) {
@@ -130,8 +131,8 @@ class homecontroller
     }
     public function archive($status, $id)
     {
-        $this->user = new task;
-        $query =  $this->user->archive($status, $id);
+        $this->app = new Task;
+        $query =  $this->app->archive($status, $id);
 
 
         if ($query == true) {
@@ -142,8 +143,8 @@ class homecontroller
     }
     public function unarchive($status, $id)
     {
-        $this->user = new task;
-        $query =  $this->user->unarchive($status, $id);
+        $this->app = new Task;
+        $query =  $this->app->unarchive($status, $id);
 
 
         if ($query == true) {
@@ -152,24 +153,4 @@ class homecontroller
             echo "error";
         }
     }
-
-    // public function checklogin()
-    // {
-    //     $connect = new Db;
-    //     $conn = $connect->connection();
-    //     session_start();
-    //     if (isset($_POST['username']) && isset($_POST['password'])) {
-    //         $username = htmlspecialchars(trim(strtolower($_POST['username'])));
-    //         $password = sha1($_POST['password']);
-    //         $sql = "SELECT * FROM admin WHERE admin_username = '$username' AND admin_password = '$password'";
-    //         $result = mysqli_query($conn, $sql);
-    //         if (mysqli_num_rows($result) > 0) {
-    //             $_SESSION['name'] = $username;
-    //             $_SESSION['password'] = $password;
-    //             header("Location: dashboard");
-    //         } else {
-    //             header("location: views/login.view.php?error=username or password incorrect");
-    //         }
-    //     }
-    // }
 }

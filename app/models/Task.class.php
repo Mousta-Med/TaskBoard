@@ -2,7 +2,7 @@
 
 require_once "Db.class.php";
 
-class task extends Db
+class Task extends Db
 {
     public function addtask($a, $b, $c, $d, $e)
     {
@@ -30,32 +30,32 @@ class task extends Db
             return false;
         }
     }
-    public function showtasktodo()
+    public function showtasktodo($id)
     {
         $connect = new Db;
         $conn = $connect->connection();
-        $sql1 = $conn->prepare("SELECT * FROM task WHERE task_status = 'todo' AND user_id = 1 ORDER BY task_deadline");
-        // $sql3->bind_param("i", $id);
+        $sql1 = $conn->prepare("SELECT * FROM task WHERE task_status = 'todo' AND user_id = ? ORDER BY task_deadline");
+        $sql1->bind_param("i", $id);
         $sql1->execute();
         $result = $sql1->get_result();
         return $result;
     }
-    public function showtaskdoing()
+    public function showtaskdoing($id)
     {
         $connect = new Db;
         $conn = $connect->connection();
-        $sql2 = $conn->prepare("SELECT * FROM task WHERE task_status = 'doing' AND user_id = 1 ORDER BY task_deadline");
-        // $sql3->bind_param("i", $id);
+        $sql2 = $conn->prepare("SELECT * FROM task WHERE task_status = 'doing' AND user_id = ? ORDER BY task_deadline");
+        $sql2->bind_param("i", $id);
         $sql2->execute();
         $result = $sql2->get_result();
         return $result;
     }
-    public function showtaskdone()
+    public function showtaskdone($id)
     {
         $connect = new Db;
         $conn = $connect->connection();
-        $sql3 = $conn->prepare("SELECT * FROM task WHERE task_status = 'done' AND user_id = 1 ORDER BY task_deadline");
-        // $sql3->bind_param("i", $id);
+        $sql3 = $conn->prepare("SELECT * FROM task WHERE task_status = 'done' AND user_id = ? ORDER BY task_deadline");
+        $sql3->bind_param("i", $id);
         $sql3->execute();
         $result = $sql3->get_result();
         return $result;
@@ -108,22 +108,22 @@ class task extends Db
         $result = $query->execute();
         return $result;
     }
-    public function showarchive()
+    public function showarchive($id)
     {
         $connect = new Db;
         $conn = $connect->connection();
-        $sql4 = $conn->prepare("SELECT * FROM task WHERE task_status = 'archive' AND user_id = 1 ORDER BY task_deadline");
-        // $sql3->bind_param("i", $id);
+        $sql4 = $conn->prepare("SELECT * FROM task WHERE task_status = 'archive' AND user_id = ? ORDER BY task_deadline");
+        $sql4->bind_param("i", $id);
         $sql4->execute();
         $result = $sql4->get_result();
         return $result;
     }
-    public function statistique($status)
+    public function statistique($status, $userid)
     {
         $connect = new Db;
         $conn = $connect->connection();
-        $query = $conn->prepare("SELECT COUNT(task_status) FROM task WHERE task_status = ?");
-        $query->bind_param("s", $status);
+        $query = $conn->prepare("SELECT COUNT(task_status) FROM task WHERE task_status = ? AND user_id = ?");
+        $query->bind_param("si", $status, $userid);
         $query->execute();
         $result = $query->get_result();
         return $result;

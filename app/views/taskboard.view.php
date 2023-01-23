@@ -19,7 +19,7 @@
             <input class="form-control me-2" type="text" placeholder="Search">
             <button class="btn btn-primary" type="button">Search</button>
         </form>
-        <a class="navbar-brand a" href=""><i class="fa fa-sign-out"></i>Log-Out</a>
+        <a class="navbar-brand a" href="/taskboard/logout"><i class="fa fa-sign-out"></i>Log-Out</a>
     </nav>
     <!-- container -->
     <div class="homecontainer">

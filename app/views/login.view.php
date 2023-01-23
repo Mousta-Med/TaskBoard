@@ -12,18 +12,25 @@
 </head>
 
 <body>
-    <div class="login">
+    <div class="login d-flex flex-column flex-wrap">
+        <?php
+        if (isset($msg)) {
+        ?>
+            <div class="alert alert-danger" role="alert">
+                <?= $msg ?>
+            </div>
+        <?php } ?>
         <div class="container" style="width: 65%;">
             <h1 class="h1 display-3 mb-5  text-center fw-normal ">Login</h1>
             <div class="col-md-6 offset-md-3">
-                <form class="">
+                <form action="user-login" method="post">
                     <div class="form-group mt-5 mb-3">
                         <label for="email" class="lead">Email address</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        <input type="email" class="form-control" name="email" placeholder="Enter email">
                     </div>
                     <div class="form-group ">
                         <label for="password" class="lead">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <input type="password" class="form-control" name="password" placeholder="Password">
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Submit</button>
                     <div class="info_div mt-4">
