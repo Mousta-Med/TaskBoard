@@ -23,6 +23,18 @@
     </nav>
     <!-- container -->
     <div class="homecontainer">
+        <?php
+        if (!empty($_SESSION['alert'])) {
+        ?>
+            <div class="msg">
+                <div class="alert mt-2 alert-<?= $_SESSION['alert']['type'] ?>" role="alert">
+                    <?= $_SESSION['alert']['msg'] ?>
+                </div>
+            </div>
+        <?php
+        }
+        unset($_SESSION['alert']);
+        ?>
         <div class="d-flex justify-content-between p-5">
             <button class="btn btn-primary add-open">Add Task</button>
             <button class="btn btn-primary archive-open">Archive</button>

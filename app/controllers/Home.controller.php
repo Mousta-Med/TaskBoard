@@ -22,6 +22,10 @@ class Homecontroller
         $query = $this->app->addtask($userid, $status, $title, $subject, $deadline);
 
         if ($query == true) {
+            $_SESSION['alert'] = [
+                'type' => 'success',
+                'msg' => 'Task Added Successfuly'
+            ];
             header('Location: ../taskboard');
         } else {
             echo "error";
@@ -37,6 +41,10 @@ class Homecontroller
         $query = $this->app->updatetask($title, $subject, $deadline, $id);
 
         if ($query == true) {
+            $_SESSION['alert'] = [
+                'type' => 'success',
+                'msg' => 'Task Updated Successfuly'
+            ];
             header('Location: ../taskboard');
         } else {
             echo "error";
@@ -44,24 +52,39 @@ class Homecontroller
     }
     public function showtasks()
     {
-        $userid = $_SESSION['id'];
-        $this->app = new Task;
-        $sql1 = $this->app->showtasktodo($userid);
-        $sql2 = $this->app->showtaskdoing($userid);
-        $sql3 = $this->app->showtaskdone($userid);
-        $sql4 = $this->app->showarchive($userid);
-        $statistique1 = $this->app->statistique("todo", $userid);
-        $statistique2 = $this->app->statistique("doing", $userid);
-        $statistique3 = $this->app->statistique("done", $userid);
+        if (!isset($_SESSION['email'])) {
+            $_SESSION['alert'] = [
+                'type' => 'danger',
+                'msg' => 'You Must Login First'
+            ];
+            header("location: /taskboard/login");
+        } else {
+            $userid = $_SESSION['id'];
+            $this->app = new Task;
+            $sql1 = $this->app->showtasktodo($userid);
+            $sql2 = $this->app->showtaskdoing($userid);
+            $sql3 = $this->app->showtaskdone($userid);
+            $sql4 = $this->app->showarchive($userid);
+            $statistique1 = $this->app->statistique("todo", $userid);
+            $statistique2 = $this->app->statistique("doing", $userid);
+            $statistique3 = $this->app->statistique("done", $userid);
 
-        require "app/views/taskboard.view.php";
+            require "app/views/taskboard.view.php";
+        }
     }
     public function showtaskid($id)
     {
-        $this->app = new Task;
-        $sql = $this->app->showtaskid($id);
-
-        require "app/views/update.view.php";
+        if (!isset($_SESSION['email'])) {
+            $_SESSION['alert'] = [
+                'type' => 'danger',
+                'msg' => 'You Must Login First'
+            ];
+            header("location: /taskboard/login");
+        } else {
+            $this->app = new Task;
+            $sql = $this->app->showtaskid($id);
+            require "app/views/update.view.php";
+        }
     }
 
     public function delete($id)
@@ -69,6 +92,10 @@ class Homecontroller
         $this->app = new Task;
         $query = $this->app->delete($id);
         if ($query == true) {
+            $_SESSION['alert'] = [
+                'type' => 'success',
+                'msg' => 'Task Deleted Successfuly'
+            ];
             header('Location: ../taskboard');
         } else {
             echo "error";
@@ -90,6 +117,10 @@ class Homecontroller
             $query = $this->app->addtask($userid, $status, ${'title' . $i}, ${'subject' . $i}, ${'deadline' . $i});
         }
         if ($query == true) {
+            $_SESSION['alert'] = [
+                'type' => 'success',
+                'msg' => 'Tasks Added Successfuly'
+            ];
             header('Location: ../taskboard');
         } else {
             echo "error";
@@ -136,6 +167,10 @@ class Homecontroller
 
 
         if ($query == true) {
+            $_SESSION['alert'] = [
+                'type' => 'success',
+                'msg' => 'Task Archived Successfuly'
+            ];
             header('Location: ../../taskboard');
         } else {
             echo "error";
@@ -148,6 +183,10 @@ class Homecontroller
 
 
         if ($query == true) {
+            $_SESSION['alert'] = [
+                'type' => 'success',
+                'msg' => 'Task Unarchived Successfuly'
+            ];
             header('Location: ../../taskboard');
         } else {
             echo "error";

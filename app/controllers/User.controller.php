@@ -22,9 +22,16 @@ class Usercontroller
             session_start();
             $_SESSION['email'] = $email;
             $_SESSION['id'] = $id;
+            $_SESSION['alert'] = [
+                'type' => 'success',
+                'msg' => 'Login Successful.'
+            ];
             header('Location: /taskboard/taskboard');
         } else {
-            $msg = "Invalid username or password.";
+            $_SESSION['alert'] = [
+                'type' => 'danger',
+                'msg' => 'Invalid Email Or Password.'
+            ];
             header('Location: /taskboard/login');
         }
     }
@@ -32,6 +39,11 @@ class Usercontroller
     {
         session_unset();
         session_destroy();
+        session_start();
+        $_SESSION['alert'] = [
+            'type' => 'success',
+            'msg' => 'Logout Successful.'
+        ];
         header('Location: /taskboard/login');
     }
     public function signup()
@@ -48,24 +60,4 @@ class Usercontroller
             echo "error";
         }
     }
-
-    // public function checklogin()
-    // {
-    //     $connect = new Db;
-    //     $conn = $connect->connection();
-    //     session_start();
-    //     if (isset($_POST['username']) && isset($_POST['password'])) {
-    //         $username = htmlspecialchars(trim(strtolower($_POST['username'])));
-    //         $password = sha1($_POST['password']);
-    //         $sql = "SELECT * FROM admin WHERE admin_username = '$username' AND admin_password = '$password'";
-    //         $result = mysqli_query($conn, $sql);
-    //         if (mysqli_num_rows($result) > 0) {
-    //             $_SESSION['name'] = $username;
-    //             $_SESSION['password'] = $password;
-    //             header("Location: dashboard");
-    //         } else {
-    //             header("location: views/login.view.php?error=username or password incorrect");
-    //         }
-    //     }
-    // }
 }

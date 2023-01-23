@@ -243,6 +243,10 @@ input[type="datetime-local"] {
 .numoftask {
   color: #000;
 }
+.msg {
+  display: flex;
+  justify-content: center;
+}
 
 @media only screen and (max-width: 600px) {
   nav {
