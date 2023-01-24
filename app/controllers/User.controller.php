@@ -55,6 +55,10 @@ class Usercontroller
         $query = $this->user->signup($name, $email, $password);
 
         if ($query == true) {
+            $_SESSION['alert'] = [
+                'type' => 'success',
+                'msg' => 'Compte Created Successfuly.'
+            ];
             header('Location: /taskboard/login');
         } else {
             echo "error";

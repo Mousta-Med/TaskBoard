@@ -16,18 +16,21 @@
         <div class="container" style="width: 65%;">
             <h1 class="h1 display-3 mb-5  text-center fw-normal ">Signup</h1>
             <div class="col-md-6 offset-md-3">
-                <form action="user-signup" method="post">
+                <form action="user-signup" method="post" id="form">
                     <div class="form-group mt-5 mb-3">
                         <label for="name" class="lead">Name</label>
-                        <input type="text" class="form-control" name="name" placeholder="Enter your name">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+                        <p id="name_err">Please Enter Valid Name</p>
                     </div>
                     <div class="form-group mb-3">
                         <label for="email" class="lead">Email</label>
                         <input type="email" class="form-control" name="email" placeholder="Enter your email">
+                        <p id="email_err">Please Enter Valid Email</p>
                     </div>
                     <div class="form-group">
                         <label for="password" class="lead">Password</label>
                         <input type="password" class="form-control" name="password" placeholder="Enter your password">
+                        <p id="password_err">Please Enter Valid Password</p>
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
                 </form>
@@ -37,6 +40,7 @@
             </div>
         </div>
     </div>
+    <script src="/taskboard/public/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 

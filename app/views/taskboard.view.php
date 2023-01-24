@@ -89,8 +89,8 @@
                                 <div class="d-flex justify-content-around">
                                     <a href="moveleft/<?= $task['task_status'] ?>/<?= $task['task_id'] ?>"><i class="fa-solid fa-left-long i"></i></a>
                                     <a href="delete/<?= $task['task_id'] ?>"><i class="fa-solid fa-trash-can i"></i></a>
-                                    <a href="archive/<?= $task['task_status'] ?>/<?= $task['task_id'] ?>"><i class="fa-solid fa-box-archive i"></i></a>
                                     <a href="update/<?= $task['task_id'] ?>"><i class="fa-regular fa-pen-to-square i"></i></a>
+                                    <a href="archive/<?= $task['task_status'] ?>/<?= $task['task_id'] ?>"><i class="fa-solid fa-box-archive i"></i></a>
                                     <a href="moveright/<?= $task['task_status'] ?>/<?= $task['task_id'] ?>"><i class="fa-solid fa-right-long i"></i></a>
                                 </div>
                             </div>
@@ -116,9 +116,9 @@
                                 <p class="deadtext">Deadline : <?= $task['task_deadline'] ?></p>
                                 <div class="d-flex justify-content-around">
                                     <a href="moveleft/<?= $task['task_status'] ?>/<?= $task['task_id'] ?>"><i class="fa-solid fa-left-long i"></i></a>
+                                    <a href="update/<?= $task['task_id'] ?>"><i class="fa-regular fa-pen-to-square i"></i></a>
                                     <a href="delete/<?= $task['task_id'] ?>"><i class="fa-solid fa-trash-can i"></i></a>
                                     <a href="archive/<?= $task['task_status'] ?>/<?= $task['task_id'] ?>"><i class="fa-solid fa-box-archive i"></i></a>
-                                    <a href="update/<?= $task['task_id'] ?>"><i class="fa-regular fa-pen-to-square i"></i></a>
                                 </div>
                             </div>
                         <?php } ?>

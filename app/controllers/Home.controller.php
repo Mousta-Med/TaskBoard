@@ -12,42 +12,58 @@ class Homecontroller
 
     public function addtask()
     {
-        $userid = $_SESSION['id'];
-        $title = $_POST['task-title'];
-        $subject = $_POST['task-subject'];
-        $status = $_POST['task-status'];
-        $deadline = $_POST['deadline'];
-
-        $this->app = new Task;
-        $query = $this->app->addtask($userid, $status, $title, $subject, $deadline);
-
-        if ($query == true) {
+        if (!isset($_SESSION['email'])) {
             $_SESSION['alert'] = [
-                'type' => 'success',
-                'msg' => 'Task Added Successfuly'
+                'type' => 'danger',
+                'msg' => 'You Must Login First'
             ];
-            header('Location: ../taskboard');
+            header("location: /taskboard/login");
         } else {
-            echo "error";
+            $userid = $_SESSION['id'];
+            $title = $_POST['task-title'];
+            $subject = $_POST['task-subject'];
+            $status = $_POST['task-status'];
+            $deadline = $_POST['deadline'];
+
+            $this->app = new Task;
+            $query = $this->app->addtask($userid, $status, $title, $subject, $deadline);
+
+            if ($query == true) {
+                $_SESSION['alert'] = [
+                    'type' => 'success',
+                    'msg' => 'Task Added Successfuly'
+                ];
+                header('Location: ../taskboard');
+            } else {
+                echo "error";
+            }
         }
     }
     public function updatetask($id)
     {
-        $title = $_POST['task-title'];
-        $subject = $_POST['task-subject'];
-        $deadline = $_POST['deadline'];
-
-        $this->app = new Task;
-        $query = $this->app->updatetask($title, $subject, $deadline, $id);
-
-        if ($query == true) {
+        if (!isset($_SESSION['email'])) {
             $_SESSION['alert'] = [
-                'type' => 'success',
-                'msg' => 'Task Updated Successfuly'
+                'type' => 'danger',
+                'msg' => 'You Must Login First'
             ];
-            header('Location: ../taskboard');
+            header("location: /taskboard/login");
         } else {
-            echo "error";
+            $title = $_POST['task-title'];
+            $subject = $_POST['task-subject'];
+            $deadline = $_POST['deadline'];
+
+            $this->app = new Task;
+            $query = $this->app->updatetask($title, $subject, $deadline, $id);
+
+            if ($query == true) {
+                $_SESSION['alert'] = [
+                    'type' => 'success',
+                    'msg' => 'Task Updated Successfuly'
+                ];
+                header('Location: ../taskboard');
+            } else {
+                echo "error";
+            }
         }
     }
     public function showtasks()
@@ -89,75 +105,107 @@ class Homecontroller
 
     public function delete($id)
     {
-        $this->app = new Task;
-        $query = $this->app->delete($id);
-        if ($query == true) {
+        if (!isset($_SESSION['email'])) {
             $_SESSION['alert'] = [
-                'type' => 'success',
-                'msg' => 'Task Deleted Successfuly'
+                'type' => 'danger',
+                'msg' => 'You Must Login First'
             ];
-            header('Location: ../taskboard');
+            header("location: /taskboard/login");
         } else {
-            echo "error";
+            $this->app = new Task;
+            $query = $this->app->delete($id);
+            if ($query == true) {
+                $_SESSION['alert'] = [
+                    'type' => 'success',
+                    'msg' => 'Task Deleted Successfuly'
+                ];
+                header('Location: ../taskboard');
+            } else {
+                echo "error";
+            }
         }
     }
 
     public function addmultitask()
     {
-        $userid = $_SESSION['id'];
-        $nptask = $_POST['numoftask'];
-        $status = $_POST['task-status'];
-        for ($i = 1; $i - 1 < $nptask; $i++) {
-            ${'title' . $i} = $_POST['task-title' . $i];
-            ${'subject' . $i} = $_POST['task-subject' . $i];
-            ${'deadline' . $i} = $_POST['deadline' . $i];
-        }
-        $this->app = new Task;
-        for ($i = 1; $i - 1 < $nptask; $i++) {
-            $query = $this->app->addtask($userid, $status, ${'title' . $i}, ${'subject' . $i}, ${'deadline' . $i});
-        }
-        if ($query == true) {
+        if (!isset($_SESSION['email'])) {
             $_SESSION['alert'] = [
-                'type' => 'success',
-                'msg' => 'Tasks Added Successfuly'
+                'type' => 'danger',
+                'msg' => 'You Must Login First'
             ];
-            header('Location: ../taskboard');
+            header("location: /taskboard/login");
         } else {
-            echo "error";
+            $userid = $_SESSION['id'];
+            $nptask = $_POST['numoftask'];
+            $status = $_POST['task-status'];
+            for ($i = 1; $i - 1 < $nptask; $i++) {
+                ${'title' . $i} = $_POST['task-title' . $i];
+                ${'subject' . $i} = $_POST['task-subject' . $i];
+                ${'deadline' . $i} = $_POST['deadline' . $i];
+            }
+            $this->app = new Task;
+            for ($i = 1; $i - 1 < $nptask; $i++) {
+                $query = $this->app->addtask($userid, $status, ${'title' . $i}, ${'subject' . $i}, ${'deadline' . $i});
+            }
+            if ($query == true) {
+                $_SESSION['alert'] = [
+                    'type' => 'success',
+                    'msg' => 'Tasks Added Successfuly'
+                ];
+                header('Location: ../taskboard');
+            } else {
+                echo "error";
+            }
         }
     }
     public function moveright($status, $id)
     {
-        $this->app = new Task;
-        if ($status == "doing") {
-            $move = "done";
-            $query =  $this->app->move($move, $id);
-        } elseif ($status == "todo") {
-            $move = "doing";
-            $query =  $this->app->move($move, $id);
-        }
-
-        if ($query == true) {
-            header('Location: ../../taskboard');
+        if (!isset($_SESSION['email'])) {
+            $_SESSION['alert'] = [
+                'type' => 'danger',
+                'msg' => 'You Must Login First'
+            ];
+            header("location: /taskboard/login");
         } else {
-            echo "error";
+            $this->app = new Task;
+            if ($status == "doing") {
+                $move = "done";
+                $query =  $this->app->move($move, $id);
+            } elseif ($status == "todo") {
+                $move = "doing";
+                $query =  $this->app->move($move, $id);
+            }
+
+            if ($query == true) {
+                header('Location: ../../taskboard');
+            } else {
+                echo "error";
+            }
         }
     }
     public function moveleft($status, $id)
     {
-        $this->app = new Task;
-        if ($status == "doing") {
-            $move = "todo";
-            $query =  $this->app->move($move, $id);
-        } elseif ($status == "done") {
-            $move = "doing";
-            $query =  $this->app->move($move, $id);
-        }
-
-        if ($query == true) {
-            header('Location: ../../taskboard');
+        if (!isset($_SESSION['email'])) {
+            $_SESSION['alert'] = [
+                'type' => 'danger',
+                'msg' => 'You Must Login First'
+            ];
+            header("location: /taskboard/login");
         } else {
-            echo "error";
+            $this->app = new Task;
+            if ($status == "doing") {
+                $move = "todo";
+                $query =  $this->app->move($move, $id);
+            } elseif ($status == "done") {
+                $move = "doing";
+                $query =  $this->app->move($move, $id);
+            }
+
+            if ($query == true) {
+                header('Location: ../../taskboard');
+            } else {
+                echo "error";
+            }
         }
     }
     public function archive($status, $id)
@@ -165,15 +213,23 @@ class Homecontroller
         $this->app = new Task;
         $query =  $this->app->archive($status, $id);
 
-
-        if ($query == true) {
+        if (!isset($_SESSION['email'])) {
             $_SESSION['alert'] = [
-                'type' => 'success',
-                'msg' => 'Task Archived Successfuly'
+                'type' => 'danger',
+                'msg' => 'You Must Login First'
             ];
-            header('Location: ../../taskboard');
+            header("location: /taskboard/login");
         } else {
-            echo "error";
+
+            if ($query == true) {
+                $_SESSION['alert'] = [
+                    'type' => 'success',
+                    'msg' => 'Task Archived Successfuly'
+                ];
+                header('Location: ../../taskboard');
+            } else {
+                echo "error";
+            }
         }
     }
     public function unarchive($status, $id)
@@ -181,15 +237,22 @@ class Homecontroller
         $this->app = new Task;
         $query =  $this->app->unarchive($status, $id);
 
-
-        if ($query == true) {
+        if (!isset($_SESSION['email'])) {
             $_SESSION['alert'] = [
-                'type' => 'success',
-                'msg' => 'Task Unarchived Successfuly'
+                'type' => 'danger',
+                'msg' => 'You Must Login First'
             ];
-            header('Location: ../../taskboard');
+            header("location: /taskboard/login");
         } else {
-            echo "error";
+            if ($query == true) {
+                $_SESSION['alert'] = [
+                    'type' => 'success',
+                    'msg' => 'Task Unarchived Successfuly'
+                ];
+                header('Location: ../../taskboard');
+            } else {
+                echo "error";
+            }
         }
     }
 }
