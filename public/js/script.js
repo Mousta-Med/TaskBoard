@@ -106,3 +106,21 @@ if (userpassword) {
     }
   });
 }
+
+var seachinput = document.querySelector('#search');
+let Names = document.querySelectorAll('.titles');
+if (seachinput) {
+  seachinput.addEventListener('input', (e) => {
+    let filter = e.target.value;
+    filter = filter.toUpperCase();
+    for (let i = 0; i < Names.length; i++) {
+      let a = Names[i].innerHTML;
+      a = a.toUpperCase();
+      if (a.indexOf(filter) > -1) {
+        Names[i].parentElement.style.display = "block";
+      } else {
+        Names[i].parentElement.style.display = "none";
+      }
+    }
+  });
+}

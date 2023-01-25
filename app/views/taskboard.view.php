@@ -16,7 +16,7 @@
     <nav>
         <a class="navbar-brand a"><i class="fa-sharp fa-solid fa-list-check"></i>board</a>
         <form class="d-flex search">
-            <input class="form-control me-2" type="text" placeholder="Search">
+            <input class="form-control me-2" id="search" type="text" placeholder="Search">
             <button class="btn btn-primary" type="button">Search</button>
         </form>
         <a class="navbar-brand a" href="/taskboard/logout"><i class="fa fa-sign-out"></i>Log-Out</a>
@@ -56,7 +56,7 @@
                             }
                         ?>
                             <div class="task">
-                                <h5><?= $task['task_title'] ?> : </h5>
+                                <h5 class="titles"><?= $task['task_title'] ?> : </h5>
                                 <p><?= $task['task_subject'] ?></p>
                                 <p class="deadtext">Deadline : <?= $task['task_deadline'] ?></p>
                                 <div class="d-flex justify-content-around">
@@ -83,7 +83,7 @@
                             }
                         ?>
                             <div class="task">
-                                <h5><?= $task['task_title'] ?></h5>
+                                <h5 class="titles"><?= $task['task_title'] ?></h5>
                                 <p><?= $task['task_subject'] ?></p>
                                 <p class="deadtext">Deadline : <?= $task['task_deadline'] ?></p>
                                 <div class="d-flex justify-content-around">
@@ -111,7 +111,7 @@
                             }
                         ?>
                             <div class="task">
-                                <h5><?= $task['task_title'] ?></h5>
+                                <h5 class="titles"><?= $task['task_title'] ?></h5>
                                 <p><?= $task['task_subject'] ?></p>
                                 <p class="deadtext">Deadline : <?= $task['task_deadline'] ?></p>
                                 <div class="d-flex justify-content-around">

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2023 at 06:58 PM
+-- Generation Time: Jan 25, 2023 at 12:10 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,10 +42,7 @@ CREATE TABLE `task` (
 --
 
 INSERT INTO `task` (`task_id`, `user_id`, `task_status`, `task_title`, `task_subject`, `task_deadline`, `st_bf_ar`) VALUES
-(8, 1, 'doing', 'brief 6', 'complete brief 6', '2023-01-22 13:33:00', ''),
-(9, 1, 'todo', 'test1', 'just for tset 1', '2023-01-22 13:53:00', ''),
-(10, 1, 'todo', 'brief 8', 'complete brief 7', '2023-01-29 18:29:30', ''),
-(11, 1, 'done', 'brief 6', 'complete brief 7', '2023-01-22 20:26:00', '');
+(1, 1, 'doing', 'test1', 'complete brief 6', '2023-01-29 16:15:00', '');
 
 -- --------------------------------------------------------
 
@@ -61,6 +58,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `user_name`, `user_email`, `user_password`) VALUES
+(1, 'Mohammed Mousta', 'moustamuhammed@gmail.com', '$2y$10$tDs3R1Yyy46RBBqT.Ian/eoav6d5oFcQXiEMoKsgFRFTxr7HBMPX6');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -68,13 +72,15 @@ CREATE TABLE `user` (
 -- Indexes for table `task`
 --
 ALTER TABLE `task`
-  ADD PRIMARY KEY (`task_id`);
+  ADD PRIMARY KEY (`task_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `user_email` (`user_email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -84,13 +90,23 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `task`
 --
 ALTER TABLE `task`
-  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `task`
+--
+ALTER TABLE `task`
+  ADD CONSTRAINT `task_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
