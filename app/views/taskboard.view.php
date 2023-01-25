@@ -27,7 +27,7 @@
         if (!empty($_SESSION['alert'])) {
         ?>
             <div class="msg">
-                <div class="alert mt-2 alert-<?= $_SESSION['alert']['type'] ?>" role="alert">
+                <div class="alert mt-2 p-3 mb-0 alert-<?= $_SESSION['alert']['type'] ?>" role="alert">
                     <?= $_SESSION['alert']['msg'] ?>
                 </div>
             </div>
@@ -146,7 +146,7 @@
             <form action="addmultitask" method="post">
                 <div class="num-of-task mb-3 mt-3">
                     <label for="numoftask">Number Of Task :</label>
-                    <input type="number" class="numoftask" name="numoftask" min="2" max="8" style="color: black;">
+                    <input type="number" class="numoftask" name="numoftask" min="2" max="6" style="color: black;">
                 </div>
                 <div class="task-form d-flex flex-row justify-content-around flex-wrap">
 

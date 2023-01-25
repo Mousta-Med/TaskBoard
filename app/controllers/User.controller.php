@@ -9,8 +9,33 @@ class Usercontroller
 {
     private $user;
 
+    public function loginform()
+    {
+        if (isset($_SESSION['email'])) {
+            $_SESSION['alert'] = [
+                'type' => 'danger',
+                'msg' => 'You Must Logout First'
+            ];
+            header("location: /taskboard/");
+        } else {
+            require "app/views/login.view.php";
+        }
+    }
+    public function signupform()
+    {
+        if (isset($_SESSION['email'])) {
+            $_SESSION['alert'] = [
+                'type' => 'danger',
+                'msg' => 'You Must Logout First'
+            ];
+            header("location: /taskboard/");
+        } else {
+            require "app/views/signup.view.php";
+        }
+    }
     public function login()
     {
+
         $email = $_POST['email'];
         $password = $_POST['password'];
         $this->user = new user;
@@ -48,20 +73,27 @@ class Usercontroller
     }
     public function signup()
     {
+
+        $this->user = new user;
+
         $name = $_POST['name'];
         $email = $_POST['email'];
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $this->user = new user;
-        $query = $this->user->signup($name, $email, $password);
 
-        if ($query == true) {
+        $result = $this->user->login($email);
+        if (mysqli_num_rows($result) > 0) {
+            $_SESSION['alert'] = [
+                'type' => 'danger',
+                'msg' => 'This Email Already Used.'
+            ];
+            header('Location: /taskboard/signup');
+        } else {
+            $this->user->signup($name, $email, $password);
             $_SESSION['alert'] = [
                 'type' => 'success',
                 'msg' => 'Compte Created Successfuly.'
             ];
             header('Location: /taskboard/login');
-        } else {
-            echo "error";
         }
     }
 }

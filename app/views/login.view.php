@@ -13,19 +13,19 @@
 
 <body>
     <div class="login d-flex flex-column flex-wrap">
-        <?php
-        if (!empty($_SESSION['alert'])) {
-        ?>
-            <div class="msg">
-                <div class="alert alert-<?= $_SESSION['alert']['type'] ?>" role="alert">
-                    <?= $_SESSION['alert']['msg'] ?>
-                </div>
-            </div>
-        <?php
-        }
-        unset($_SESSION['alert']);
-        ?>
         <div class="container sign-container">
+            <?php
+            if (!empty($_SESSION['alert'])) {
+            ?>
+                <div class="msg">
+                    <div class="alert alert-<?= $_SESSION['alert']['type'] ?>" role="alert">
+                        <?= $_SESSION['alert']['msg'] ?>
+                    </div>
+                </div>
+            <?php
+            }
+            unset($_SESSION['alert']);
+            ?>
             <h1 class="h1 display-3 mb-5  text-center fw-normal ">Login</h1>
             <div class="col-md-6 offset-md-3">
                 <form action="user-login" method="post">

@@ -11,7 +11,7 @@ class User extends Db
         $stmt = $conn->prepare("INSERT INTO user (user_name, user_email, user_password) VALUE(?,?,?)");
         $stmt->bind_param("sss", $a, $b, $c);
         $result = $stmt->execute();
-        if ($result == true) {
+        if ($result) {
             return true;
         } else {
             return false;

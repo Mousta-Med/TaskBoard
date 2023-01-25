@@ -17,16 +17,13 @@ if (empty($_GET['page'])) {
 
     switch ($URL[0]) {
         case "signup":
-            require "app/views/signup.view.php";
+            $Usercontroller->signupform();
             break;
         case "user-signup":
             $Usercontroller->signup();
             break;
         case "login":
-            if (isset($msg)) {
-                $msg = $URL[1];
-            }
-            require "app/views/login.view.php";
+            $Usercontroller->loginform();
             break;
         case "logout":
             $Usercontroller->logout();
