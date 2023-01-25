@@ -13,7 +13,7 @@
 
 <body>
     <div class="signup">
-        <div class="container" style="width: 65%;">
+        <div class="container sign-container">
             <h1 class="h1 display-3 mb-5  text-center fw-normal ">Signup</h1>
             <div class="col-md-6 offset-md-3">
                 <form action="user-signup" method="post" id="form">
@@ -24,15 +24,15 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="email" class="lead">Email</label>
-                        <input type="email" class="form-control" name="email" placeholder="Enter your email">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
                         <p id="email_err">Please Enter Valid Email</p>
                     </div>
                     <div class="form-group">
                         <label for="password" class="lead">Password</label>
-                        <input type="password" class="form-control" name="password" placeholder="Enter your password">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
                         <p id="password_err">Please Enter Valid Password</p>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
+                    <button type="submit" id="submit" class="btn btn-primary mt-3">Sign Up</button>
                 </form>
                 <div class="info_div mt-4">
                     <p>Already have account ?<a href="login">Login now</a></p>

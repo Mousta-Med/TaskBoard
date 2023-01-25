@@ -25,7 +25,7 @@
         }
         unset($_SESSION['alert']);
         ?>
-        <div class="container" style="width: 65%;">
+        <div class="container sign-container">
             <h1 class="h1 display-3 mb-5  text-center fw-normal ">Login</h1>
             <div class="col-md-6 offset-md-3">
                 <form action="user-login" method="post">

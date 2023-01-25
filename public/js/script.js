@@ -55,11 +55,54 @@ if (numinput) {
   });
 }
 
-let form = document.getElementById('form');
-let username = document.getElementById('name');
+let username = document.getElementById("name");
+let name_err = document.getElementById("name_err");
+let submit = document.getElementById("submit");
 if (username) {
+  username.addEventListener("input", function (e) {
+    let namepatern = /^([A-Za-z\d]+[ ]*){6,20}$/i;
+    let value = e.target.value;
+    let namevalidation = namepatern.test(value);
+    if (namevalidation) {
+      submit.removeAttribute("disabled", "disabled");
+      name_err.style.display = "none";
+    } else {
+      submit.setAttribute("disabled", "disabled");
+      name_err.style.display = "block";
+    }
+  });
+}
 
-  username.addEventListener('input', function (e) {
-    console.log(e.target.value);
+let useremail = document.getElementById("email");
+let email_err = document.getElementById("email_err");
+if (useremail) {
+  useremail.addEventListener("input", function (e) {
+    let emailpatern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i;
+    let value = e.target.value;
+    let emailvalidation = emailpatern.test(value);
+    if (emailvalidation) {
+      submit.removeAttribute("disabled", "disabled");
+      email_err.style.display = "none";
+    } else {
+      submit.setAttribute("disabled", "disabled");
+      email_err.style.display = "block";
+    }
+  });
+}
+let userpassword = document.getElementById("password");
+let password_err = document.getElementById("password_err");
+if (userpassword) {
+  userpassword.addEventListener("input", function (e) {
+    let passwordpatern =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$/i;
+    let value = e.target.value;
+    let passwordvalidation = passwordpatern.test(value);
+    if (passwordvalidation) {
+      submit.removeAttribute("disabled", "disabled");
+      password_err.style.display = "none";
+    } else {
+      submit.setAttribute("disabled", "disabled");
+      password_err.style.display = "block";
+    }
   });
 }

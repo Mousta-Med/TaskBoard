@@ -14,7 +14,7 @@
 <body>
     <!-- navbar -->
     <nav>
-        <a href="" class="navbar-brand a"><i class="fa-sharp fa-solid fa-list-check iconscolor i"></i>board</a>
+        <a class="navbar-brand a"><i class="fa-sharp fa-solid fa-list-check"></i>board</a>
         <form class="d-flex search">
             <input class="form-control me-2" type="text" placeholder="Search">
             <button class="btn btn-primary" type="button">Search</button>
