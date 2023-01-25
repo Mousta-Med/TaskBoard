@@ -31,6 +31,8 @@ if (addarchive) {
     addarchive.classList.remove("active");
   };
 }
+
+var currentDate = new Date().toISOString().slice(0, 16);
 let taskform = document.querySelector(".task-form");
 let numinput = document.querySelector(".numoftask");
 if (numinput) {
@@ -46,7 +48,7 @@ if (numinput) {
           <input type="text" value="todo" name="task-status" class="d-none">
           <label for="">Deadline :</label>
           <div class="mb-3 mt-2">
-            <input type="datetime-local" class="deadline" min="" name="deadline${i}" required>
+            <input type="datetime-local" id="datetime" min="${currentDate}" class="deadline" name="deadline${i}" required>
           </div>
         </div>`;
         i++;
@@ -107,10 +109,10 @@ if (userpassword) {
   });
 }
 
-var seachinput = document.querySelector('#search');
-let Names = document.querySelectorAll('.titles');
+var seachinput = document.querySelector("#search");
+let Names = document.querySelectorAll(".titles");
 if (seachinput) {
-  seachinput.addEventListener('input', (e) => {
+  seachinput.addEventListener("input", (e) => {
     let filter = e.target.value;
     filter = filter.toUpperCase();
     for (let i = 0; i < Names.length; i++) {

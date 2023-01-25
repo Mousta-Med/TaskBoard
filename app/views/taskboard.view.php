@@ -13,12 +13,9 @@
 
 <body>
     <!-- navbar -->
-    <nav>
+    <nav class="">
         <a class="navbar-brand a"><i class="fa-sharp fa-solid fa-list-check"></i>board</a>
-        <form class="d-flex search">
-            <input class="form-control me-2" id="search" type="text" placeholder="Search">
-            <button class="btn btn-primary" type="button">Search</button>
-        </form>
+        <input class="form-control search" id="search" type="text" placeholder="Search">
         <a class="navbar-brand a" href="/taskboard/logout"><i class="fa fa-sign-out"></i>Log-Out</a>
     </nav>
     <!-- container -->
